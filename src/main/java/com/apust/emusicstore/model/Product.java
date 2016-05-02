@@ -14,9 +14,8 @@ import javax.persistence.Id;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String productId;
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int productId;
     private String productName;
     private String productCategory;
     private String productDescription;
@@ -26,11 +25,11 @@ public class Product {
     private double productPrice;
     private int unitInStock;
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 

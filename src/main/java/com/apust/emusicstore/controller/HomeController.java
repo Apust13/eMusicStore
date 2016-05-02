@@ -60,11 +60,8 @@ public class HomeController {
         Product product = new Product();
         product.setProductCategory("instrument");
         product.setProductCondition("new");
-        product.setProductName("JazzBass");
-        product.setProductPrice(1500);
         product.setProductStatus("active");
-        product.setUnitInStock(2);
-        product.setProductDescription("This is the legendary bass guitar with amaizing sound!");
+
 
         model.addAttribute("product", product);
         return "addProduct";
