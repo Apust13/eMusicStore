@@ -9,6 +9,7 @@
 
       <p class="lead">Checkout all the awesome products available now!</p>
     </div>
+
     <table class="table table-striped table-hover">
         <thead>
             <tr class="bg-success">
@@ -17,24 +18,26 @@
                 <th>Category</th>
                 <th>Condition</th>
                 <th>Price</th>
-                <th>Manufacturer</th>
-                <th>Status</th>
-                <th>Amount</th>
-                <th>Detail</th>
+                <%--<th>Manufacturer</th>--%>
+                <%--<th>Status</th>--%>
+                <%--<th>Amount</th>--%>
+                <%--<th>Detail</th>--%>
+                <th></th>
+
             </tr>
         </thead>
       <c:forEach items="${products}" var="product">
           <tr>
-            <td><img src="#" alt="image"></td>
+            <td ><img src="<c:url value="/resources/images/${product.productId}.jpg" />" alt="image" style="width:100%"/></td>
             <td>${product.productName}</td>
             <td>${product.productCategory}</td>
             <td>${product.productCondition}</td>
-            <td>${product.productPrice}</td>
-            <td>${product.productManufacturer}</td>
-            <td>${product.productStatus}</td>
-            <td>${product.unitInStock}</td>
-              <td><a href="<spring:url value="/productList/viewProduct/${product.productId}"/>" />
-                  <span class="glyphicon glyphicon-info-sign"></td>
+            <td>${product.productPrice} USD</td>
+            <%--<td>${product.productManufacturer}</td>--%>
+            <%--<td>${product.productStatus}</td>--%>
+            <%--<td>${product.unitInStock}</td>--%>
+              <td><a href="<spring:url value="/productList/viewProduct/${product.productId}"/>" >
+                  <span class="glyphicon glyphicon-info-sign"></span></a></td>
           </tr>
       </c:forEach>
     </table>

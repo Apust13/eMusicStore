@@ -5,12 +5,11 @@ import com.apust.emusicstore.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -20,6 +19,8 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
+    private Path path;
 
     @Autowired
     private ProductDao productDao;
@@ -37,42 +38,15 @@ public class HomeController {
     }
 
     @RequestMapping("/productList/viewProduct/{productId}")
-    public String viewProduct(@PathVariable String productId, Model model) throws IOException{
+    public String viewProduct(@PathVariable int productId, Model model) throws IOException{
         Product product = productDao.getProductById(productId);
         model.addAttribute(product);
         return "viewProduct";
     }
 
-    @RequestMapping("/admin")
-    public String adminPage(){
-        return "admin";
-    }
-
-    @RequestMapping("/admin/productInventary")
-    public String productInventary(Model model){
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
-        return "productInventary";
-    }
-
-    @RequestMapping("/admin/productInventary/addProduct")
-    public String addProduct(Model model){
-        Product product = new Product();
-        product.setProductCategory("instrument");
-        product.setProductCondition("new");
-        product.setProductStatus("active");
 
 
-        model.addAttribute("product", product);
-        return "addProduct";
-    }
 
-    @RequestMapping(value = "/admin/productInventary/addProduct", method = RequestMethod.POST)
-    public String addProductPost(@ModelAttribute("product") Product product){
-        productDao.addProduct(product);
-        return "redirect:/admin/productInventary";
-
-    }
 
 
 }

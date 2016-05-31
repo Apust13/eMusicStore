@@ -1,9 +1,13 @@
 package com.apust.emusicstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by GUN
@@ -11,19 +15,34 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Product {
+public class Product implements Serializable {
 
+
+    private static final long serialVersionUID = -6089298143419067752L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int productId;
+
+    @NotEmpty(message = "The product name must not be empty")
     private String productName;
     private String productCategory;
     private String productDescription;
     private String productStatus;
     private String productManufacturer;
     private String productCondition;
-    private double productPrice;
+
+    @Min(value = 0, message = "The price must not be less then zero")
+    private int productPrice;
+    @Min(value = 0, message = "The count of unit must not be less then zero")
     private int unitInStock;
+
+    @Transient
+    private MultipartFile productImage;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<CartItem> cartItemList;
+
 
     public int getProductId() {
         return productId;
@@ -73,11 +92,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getProductPrice() {
+    public int getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -95,5 +114,21 @@ public class Product {
 
     public void setUnitInStock(int unitInStock) {
         this.unitInStock = unitInStock;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
     }
 }
