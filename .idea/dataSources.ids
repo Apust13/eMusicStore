@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="H2 - test" uuid="ee014c79-8e6c-45cb-9801-d28465df423e">
+    <database-info product="H2" version="1.3.176 (2014-04-05)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.176 (2014-04-05)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="PUBLIC" catalog="TEST"/>
+    <table name="AUTHORITIES" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="AUTHORITIESID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNTRFMzkxQ0VfQzExMF80NUQzXzkxQjJfNkUxMTQyRkJDNkM0KQ==" autoIncrement="true"/>
+      <column name="AUTHORITY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="CONSTRAINT_A" columns="AUTHORITIESID"/>
+    </table>
+    <table name="BILLINGADDRESS" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="BILLINGADDRESSID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOENERDY0MjBfMURBMV80NDdGX0FFMjJfREFDOTA5RTU3NjE0KQ==" autoIncrement="true"/>
+      <column name="APARTMENTNUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CITY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COUNTRY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STREETNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ZIPCODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CUSTOMER_CUSTOMERID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_46" columns="BILLINGADDRESSID"/>
+      <foreign-key name="FKF0492D19E11A153E" columns="CUSTOMER_CUSTOMERID" ref-table="CUSTOMER" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CUSTOMERID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK27FBE3FE690A0E78" table="CUSTOMER" schema="PUBLIC" catalog="TEST" columns="BILLINGADDRESS"/>
+      <exported-key name="FKAEF781F0690A0E78" table="CUSTOMERORDER" schema="PUBLIC" catalog="TEST" columns="BILLINGADDRESS"/>
+      <index name="FKF0492D19E11A153E_INDEX_4" unique="false" columns="CUSTOMER_CUSTOMERID"/>
+    </table>
+    <table name="CART" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="CARTID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMjc0QzlBNEZfQ0U4NF80NDcwXzhFMzRfRjEwQkQyQUNCREJFKQ==" autoIncrement="true"/>
+      <column name="GRANDTOTAL" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CUSTOMERID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_1F" columns="CARTID"/>
+      <foreign-key name="FK1FEF4025E5363D" columns="CUSTOMERID" ref-table="CUSTOMER" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CUSTOMERID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK4393E732A81C741" table="CARTITEM" schema="PUBLIC" catalog="TEST" columns="CARTID"/>
+      <exported-key name="FK27FBE3FE2A81C741" table="CUSTOMER" schema="PUBLIC" catalog="TEST" columns="CARTID"/>
+      <exported-key name="FKAEF781F02A81C741" table="CUSTOMERORDER" schema="PUBLIC" catalog="TEST" columns="CARTID"/>
+      <index name="FK1FEF4025E5363D_INDEX_1" unique="false" columns="CUSTOMERID"/>
+    </table>
+    <table name="CARTITEM" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="CARTITEMID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDMyODYyRDlfQTQxRl80ODU0X0ExN0JfNDZBNjA0MTIyNTQ1KQ==" autoIncrement="true"/>
+      <column name="QUANTITY" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TOTALPRICE" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CARTID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="PRODUCTID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_2" columns="CARTITEMID"/>
+      <foreign-key name="FK4393E732A81C741" columns="CARTID" ref-table="CART" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CARTID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK4393E73150DC993" columns="PRODUCTID" ref-table="PRODUCT" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="PRODUCTID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="FK4393E73150DC993_INDEX_2" unique="false" columns="PRODUCTID"/>
+      <index name="FK4393E732A81C741_INDEX_2" unique="false" columns="CARTID"/>
+    </table>
+    <table name="CUSTOMER" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="CUSTOMERID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOTEwNDdFMTJfODdBOV80NzMyX0IwOTRfMDEwNzg5Q0ZGQzg5KQ==" autoIncrement="true"/>
+      <column name="CUSTOMEREMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CUSTOMERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CUSTOMERPHONE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ENABLED" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BILLINGADDRESS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CARTID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="SHIPPINGADDRESS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_5" columns="CUSTOMERID"/>
+      <foreign-key name="FK27FBE3FE690A0E78" columns="BILLINGADDRESS" ref-table="BILLINGADDRESS" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="BILLINGADDRESSID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK27FBE3FE2A81C741" columns="CARTID" ref-table="CART" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CARTID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK27FBE3FE3E847D46" columns="SHIPPINGADDRESS" ref-table="SHIPPINGADDRESS" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="SHIPPINGADDRESSID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <exported-key name="FKF0492D19E11A153E" table="BILLINGADDRESS" schema="PUBLIC" catalog="TEST" columns="CUSTOMER_CUSTOMERID"/>
+      <exported-key name="FK1FEF4025E5363D" table="CART" schema="PUBLIC" catalog="TEST" columns="CUSTOMERID"/>
+      <exported-key name="FKAEF781F025E5363D" table="CUSTOMERORDER" schema="PUBLIC" catalog="TEST" columns="CUSTOMERID"/>
+      <exported-key name="FKBB1EE46E11A153E" table="SHIPPINGADDRESS" schema="PUBLIC" catalog="TEST" columns="CUSTOMER_CUSTOMERID"/>
+      <index name="FK27FBE3FE2A81C741_INDEX_5" unique="false" columns="CARTID"/>
+      <index name="FK27FBE3FE3E847D46_INDEX_5" unique="false" columns="SHIPPINGADDRESS"/>
+      <index name="FK27FBE3FE690A0E78_INDEX_5" unique="false" columns="BILLINGADDRESS"/>
+    </table>
+    <table name="CUSTOMERORDER" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="CUSTOMERORDERID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNDY5N0NGOEVfNjc2NF80RkJCX0FFRjNfNzM5RUVFNEI4MTY5KQ==" autoIncrement="true"/>
+      <column name="BILLINGADDRESS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CARTID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CUSTOMERID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="SHIPPINGADDRESS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_3" columns="CUSTOMERORDERID"/>
+      <foreign-key name="FKAEF781F0690A0E78" columns="BILLINGADDRESS" ref-table="BILLINGADDRESS" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="BILLINGADDRESSID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FKAEF781F02A81C741" columns="CARTID" ref-table="CART" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CARTID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FKAEF781F025E5363D" columns="CUSTOMERID" ref-table="CUSTOMER" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CUSTOMERID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FKAEF781F03E847D46" columns="SHIPPINGADDRESS" ref-table="SHIPPINGADDRESS" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="SHIPPINGADDRESSID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="FKAEF781F025E5363D_INDEX_3" unique="false" columns="CUSTOMERID"/>
+      <index name="FKAEF781F02A81C741_INDEX_3" unique="false" columns="CARTID"/>
+      <index name="FKAEF781F03E847D46_INDEX_3" unique="false" columns="SHIPPINGADDRESS"/>
+      <index name="FKAEF781F0690A0E78_INDEX_3" unique="false" columns="BILLINGADDRESS"/>
+    </table>
+    <table name="HIBERNATE_SEQUENCES" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="SEQUENCE_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SEQUENCE_NEXT_HI_VALUE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+    </table>
+    <table name="PRODUCT" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="PRODUCTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRODUCTCATEGORY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRODUCTCONDITION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRODUCTDESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRODUCTMANUFACTURER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRODUCTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRODUCTPRICE" sqlType="DOUBLE" precision="17" scale="0" nullable="false" jdbcType="8"/>
+      <column name="PRODUCTSTATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UNITINSTOCK" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_1" columns="PRODUCTID"/>
+      <exported-key name="FK4393E73150DC993" table="CARTITEM" schema="PUBLIC" catalog="TEST" columns="PRODUCTID"/>
+    </table>
+    <table name="SHIPPINGADDRESS" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="SHIPPINGADDRESSID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQzAzMUM1MTdfMjRENF80MjA2X0E0QkZfMzZCMzEwRkQ5Q0Q3KQ==" autoIncrement="true"/>
+      <column name="APARTMENTNUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CITY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COUNTRY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STREETNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ZIPCODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CUSTOMER_CUSTOMERID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_26" columns="SHIPPINGADDRESSID"/>
+      <foreign-key name="FKBB1EE46E11A153E" columns="CUSTOMER_CUSTOMERID" ref-table="CUSTOMER" ref-schema="PUBLIC" ref-catalog="TEST" ref-columns="CUSTOMERID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK27FBE3FE3E847D46" table="CUSTOMER" schema="PUBLIC" catalog="TEST" columns="SHIPPINGADDRESS"/>
+      <exported-key name="FKAEF781F03E847D46" table="CUSTOMERORDER" schema="PUBLIC" catalog="TEST" columns="SHIPPINGADDRESS"/>
+      <index name="FKBB1EE46E11A153E_INDEX_2" unique="false" columns="CUSTOMER_CUSTOMERID"/>
+    </table>
+    <table name="USERS" schema="PUBLIC" catalog="TEST" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQzU3OURDMjhfQjM4M180NEI2XzlGN0ZfNjM5NTc2N0I5M0RDKQ==" autoIncrement="true"/>
+      <column name="CUSTOMERID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ENABLED" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="CONSTRAINT_4" columns="ID"/>
+    </table>
+  </data-source>
+</component>

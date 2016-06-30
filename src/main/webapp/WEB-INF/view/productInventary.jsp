@@ -42,15 +42,15 @@
           <td>${product.productStatus}</td>
           <td>${product.unitInStock}</td>
           <td>
-            <a href="<spring:url value="/productList/viewProduct/${product.productId}"/>"><span class="glyphicon glyphicon-info-sign"></span></a>
-            <a href="<spring:url value="/admin/productInventary/deleteProduct/${product.productId}"/>"><span class="glyphicon glyphicon-remove"></span></a>
-            <a href="<spring:url value="/admin/productInventary/editProduct/${product.productId}"/>"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="<spring:url value="/product/viewProduct/${product.productId}"/>"><span class="glyphicon glyphicon-info-sign"></span></a>
+            <a href="<spring:url value="/admin/product/deleteProduct/${product.productId}"/>"><span class="glyphicon glyphicon-remove"></span></a>
+            <a href="<spring:url value="/admin/product/editProduct/${product.productId}"/>"><span class="glyphicon glyphicon-pencil"></span></a>
           </td>
         </tr>
       </c:forEach>
     </table>
 
-    <a href="<spring:url value="/admin/productInventary/addProduct"/>" class="btn btn-primary">Add Product</a>
+    <a href="<spring:url value="/admin/product/addProduct"/>" class="btn btn-primary">Add Product</a>
 
     <%@include file="/WEB-INF/view/template/footer.jsp"%>
 

@@ -1,15 +1,13 @@
 package com.apust.emusicstore.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by GUN
  * on 31.05.2016.
  */
+@Entity
 public class CustomerOrder implements Serializable {
 
 

@@ -1,5 +1,6 @@
 package com.apust.emusicstore.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -9,6 +10,8 @@ import java.io.Serializable;
  * Created by GUN
  * on 31.05.2016.
  */
+
+@Entity
 public class BillingAddress implements Serializable {
 
 
@@ -18,7 +21,7 @@ public class BillingAddress implements Serializable {
     @GeneratedValue
     private int billingAddressId;
     private String streetName;
-    private String apartamentNumber;
+    private String apartmentNumber;
     private String city;
     private String country;
     private String state;
@@ -27,12 +30,12 @@ public class BillingAddress implements Serializable {
     @OneToOne
     private Customer customer;
 
-    public String getApartamentNumber() {
-        return apartamentNumber;
+    public String getApartmentNumber() {
+        return apartmentNumber;
     }
 
-    public void setApartamentNumber(String apartamentNumber) {
-        this.apartamentNumber = apartamentNumber;
+    public void setApartmentNumber(String apartmentNumber) {
+        this.apartmentNumber = apartmentNumber;
     }
 
     public String getZipCode() {
@@ -94,7 +97,7 @@ public class BillingAddress implements Serializable {
     @Override
     public String toString() {
         return "BillingAddress{" +
-                "apartamentNumber='" + apartamentNumber + '\'' +
+                "apartmentNumber='" + apartmentNumber + '\'' +
                 ", streetName='" + streetName + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +

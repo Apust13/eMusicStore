@@ -10,6 +10,7 @@ import java.io.Serializable;
  * Created by GUN
  * on 31.05.2016.
  */
+@Entity
 public class Customer implements Serializable {
 
 
